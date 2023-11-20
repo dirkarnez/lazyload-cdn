@@ -1,0 +1,20 @@
+ fetch("https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js")
+        .then(a => a.text())
+        .then(text => {
+            const a = Object.keys(window).length;
+
+            debugger;
+			eval(text);
+
+            // MyLibrary is a custom name defined in webpack.config.js
+            new MyLibrary.default({
+                target: document.getElementById("container"),
+                props: {
+                    world: "World 🌎"
+                }
+            });
+
+            const b = Object.keys(window).length;
+            debugger;
+
+        })
