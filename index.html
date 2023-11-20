@@ -1,20 +1,35 @@
- fetch("https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+         fetch("https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js")
         .then(a => a.text())
         .then(text => {
-            const a = Object.keys(window).length;
+            const oldWindowKeys = Object.keys(window);
 
-            debugger;
 			eval(text);
 
-            // MyLibrary is a custom name defined in webpack.config.js
-            new MyLibrary.default({
-                target: document.getElementById("container"),
-                props: {
-                    world: "World 🌎"
-                }
-            });
+            // // MyLibrary is a custom name defined in webpack.config.js
+            // new MyLibrary.default({
+            //     target: document.getElementById("container"),
+            //     props: {
+            //         world: "World 🌎"
+            //     }
+            // });
 
-            const b = Object.keys(window).length;
-            debugger;
 
-        })
+
+            const newWindowKeys = Object.keys(window);
+
+            if (newWindowKeys.length > oldWindowKeys.length) {
+                console.log(`injected ${newWindowKeys.filter(newWindowKey => !oldWindowKeys.includes(newWindowKey)).map(key => `"window.${key}"`).join(",")}`)
+            }
+        });
+
+    </script>
+</body>
+</html>
